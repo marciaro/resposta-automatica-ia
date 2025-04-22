@@ -26,9 +26,12 @@ $ chmod +x start.sh stop.sh
 
 # Suba os containers
 $ ./start.sh
+
+# Para ambiente Windows, utilizar os arquivos em lote
+$ iniciar.bat
 ```
 
-A API estará disponível em `http://localhost:5000`
+A API estará disponível em `http://localhost:5000` ou no IP interno indicado
 
 ---
 
@@ -36,6 +39,9 @@ A API estará disponível em `http://localhost:5000`
 
 ```bash
 ./stop.sh
+
+# Para ambiente Windows, utilizar os arquivos em lote
+$ parar.bat
 ```
 
 ---
@@ -84,7 +90,11 @@ A API estará disponível em `http://localhost:5000`
 ├── requirements.txt
 ├── feedback.log
 ├── .env.example
+├── iniciar.bat
+├── parar.bat
 ├── start.sh
-└── stop.sh
+├── stop.sh
+├── static\favicon.ico
+└── templates\index.html
 ```
 
