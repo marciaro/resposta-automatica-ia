@@ -1,17 +1,17 @@
 [
   {
     "id": 1,
-    "titulo": "Resetar senha",
-    "conteudo": "Para resetar sua senha, clique em 'Esqueci minha senha' na tela de login e siga as instruções."
+    "pergunta": "Resetar senha",
+    "resposta": "Para resetar sua senha, clique em 'Esqueci minha senha' na tela de login e siga as instruções."
   },
   {
     "id": 2,
-    "titulo": "Erro 403",
-    "conteudo": "O erro 403 geralmente indica que o usuário não tem permissão para acessar o recurso."
+    "pergunta": "Erro 403",
+    "resposta": "O erro 403 geralmente indica que o usuário não tem permissão para acessar o recurso."
   },
   {
     "id": 3,
-    "titulo": "Atualizar perfil",
-    "conteudo": "Para atualizar seu perfil, acesse a aba 'Minha conta' e clique em 'Editar perfil'."
+    "pergunta": "Atualizar perfil",
+    "resposta": "Para atualizar seu perfil, acesse a aba 'Minha conta' e clique em 'Editar perfil'."
   }
 ]

@@ -1,10 +1,10 @@
-# 🤖 Sistema de Respostas Automáticas com IA
+# Sistema de Respostas Automáticas com IA
 
 Este projeto utiliza Flask + OpenAI + TF-IDF para responder dúvidas de usuários com base em uma base de conhecimento interna. A aplicação roda em containers usando Docker Compose.
 
 ---
 
-## 🚀 Como rodar o projeto
+## Como rodar o projeto
 
 ### Pré-requisitos
 - Docker
@@ -32,7 +32,7 @@ A API estará disponível em `http://localhost:5000`
 
 ---
 
-### 📴 Encerrar a aplicação
+### Encerrar a aplicação
 
 ```bash
 ./stop.sh
@@ -40,7 +40,7 @@ A API estará disponível em `http://localhost:5000`
 
 ---
 
-## 📚 Endpoints
+## Endpoints
 
 ### `POST /pergunta`
 **Descrição:** Recebe uma pergunta e retorna a resposta baseada na base de conhecimento.
@@ -73,7 +73,7 @@ A API estará disponível em `http://localhost:5000`
 
 ---
 
-## 🧱 Estrutura de arquivos
+## Estrutura de arquivos
 ```
 .
 ├── base_conhecimento.json
@@ -88,14 +88,3 @@ A API estará disponível em `http://localhost:5000`
 └── stop.sh
 ```
 
----
-
-## 🛠 Melhorias futuras
-- Armazenar feedbacks em banco de dados
-- Autenticação de API
-- Interface web
-- Treinamento com feedbacks coletados
-
----
-
-Feito com 💻 + ☕
