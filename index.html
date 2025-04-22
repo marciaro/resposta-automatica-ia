@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>🤖 Assistente de Conhecimento Neoway</title>
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <style>
+    body { font-family: Arial, sans-serif; padding: 30px; background: #f8f9fa; }
+    h1 { color: #343a40; }
+    textarea, input[type="text"] {
+      width: 100%; padding: 10px; margin: 10px 0;
+      border-radius: 4px; border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff; color: white;
+      border: none; border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .resposta {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e9ecef;
+      border-radius: 4px;
+    }
+    .feedback {
+      margin-top: 20px;
+      padding: 10px;
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🤖 Base de Conhecimento Neoway com Assistente IA</h1>
+
+  <form id="form-pergunta">
+    <label for="pergunta">Digite sua pergunta:</label>
+    <input type="text" id="pergunta" required />
+    <button type="submit">Enviar</button>
+  </form>
+
+  <div id="resposta" class="resposta" style="display: none;"></div>
+
+  <div class="feedback" id="form-feedback" style="display: none;">
+    <h3>📩 Enviar feedback</h3>
+    <label for="relevancia">Nota (1-5):</label>
+    <input type="number" id="relevancia" min="1" max="5" />
+    <label for="comentario">Comentário:</label>
+    <textarea id="comentario"></textarea>
+    <button onclick="enviarFeedback()">Enviar Feedback</button>
+  </div>
+
+  <script>
+    let ultimaPergunta = '';
+    let ultimaResposta = '';
+
+    document.getElementById('form-pergunta').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const pergunta = document.getElementById('pergunta').value;
+      const respostaEl = document.getElementById('resposta');
+      const feedbackEl = document.getElementById('form-feedback');
+
+      respostaEl.innerText = "Carregando resposta...";
+      respostaEl.style.display = 'block';
+
+      const res = await fetch('/pergunta', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pergunta })
+      });
+
+      const data = await res.json();
+      respostaEl.innerText = data.resposta;
+      feedbackEl.style.display = 'block';
+
+      // Salva para o feedback
+      ultimaPergunta = pergunta;
+      ultimaResposta = data.resposta;
+    });
+
+    async function enviarFeedback() {
+      const relevancia = parseInt(document.getElementById('relevancia').value);
+      const comentario = document.getElementById('comentario').value;
+
+      if (!relevancia || relevancia < 1 || relevancia > 5) {
+        alert('Por favor, insira uma nota de 1 a 5.');
+        return;
+      }
+
+      await fetch('/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          pergunta: ultimaPergunta,
+          resposta: ultimaResposta,
+          relevancia,
+          comentario
+        })
+      });
+
+      alert('Feedback enviado com sucesso!');
+      document.getElementById('form-feedback').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
